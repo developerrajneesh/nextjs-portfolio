@@ -71,7 +71,7 @@ function Projects() {
   return (
     <div className="py-5 text-light" style={{ background: "rgb(64, 83, 83)" }}>
     <div className="container-xxl">
-    <h3 className="text-center pb-5">Projects</h3>
+    <h3 className="text-center pb-5 heading-for-component">Projects</h3>
       <p className="text-center mx-4">
       Innovating the future, one idea at a time. Empowering change through <br/>
                creativity. Transforming possibilities into reality. Together, we build a better tomorrow.

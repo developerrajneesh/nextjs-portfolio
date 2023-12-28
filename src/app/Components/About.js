@@ -4,7 +4,7 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 function About() {
   return (
     <div className="py-5" style={{ background: "#212529", color: "white" }}>
-      <h3 className="text-center pb-4 ">About</h3>
+      <h3 className="text-center pb-4 heading-for-component">About</h3>
       <p className="text-center mx-4">
         Passionate learner, creative problem solver, and tech enthusiast.
         Striving for growth and making a positive impact.

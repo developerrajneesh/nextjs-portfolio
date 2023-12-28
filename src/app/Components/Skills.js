@@ -31,7 +31,7 @@ function Skills() {
         className="py-5 text-light"
         style={{ background: "rgb(64, 83, 83)" }}
       >
-        <h3 className="text-center pb-5">Skills</h3>
+        <h3 className="text-center pb-5 heading-for-component">Skills</h3>
         <p className="text-center mx-4">
           Dynamic and accomplished professional with a diverse skill set.
           Resourceful <br />

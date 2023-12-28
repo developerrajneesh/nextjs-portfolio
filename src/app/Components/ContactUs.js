@@ -10,7 +10,7 @@ function ContactUs() {
       style={{ background: "#212529", color: "white" }}
     >
      <div className="container">
-     <h3 className="pb-5 text-center">Contact Me</h3>
+     <h3 className="pb-5 text-center heading-for-component">Contact Me</h3>
       <p className="text-center mx-4">
         Connecting possibilities, one message at a time. Reach out and let's
         create <br />

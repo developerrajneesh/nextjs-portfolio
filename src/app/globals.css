@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
 .bar {
   display: none !important;
   border: rgb(195, 189, 189) 1px solid;
@@ -405,7 +405,7 @@ li:hover {
   }
 
   .my-name {
-    font-size: 30px;
+    font-size: 40px;
     color: #ffbd39
   }
 
@@ -425,7 +425,12 @@ li:hover {
     padding: 10px 30px;
   }
 }
-
+@media screen and (max-width:377px) {
+  .my-name {
+    font-size: 30px !important;
+    color: #ffbd39
+  }
+}
 @media screen and (max-width:991px) {
   .bar {
     display: flex !important;
@@ -521,4 +526,12 @@ input[type="number"] {
   .about-card {
     width: 80% !important;
   }
+}
+.heading-for-component{
+  /* border-bottom: 2px solid red; */
+  font-size: 40px;
+}
+
+p.text-center{
+  font-family: 'Rajdhani', sans-serif;
 }

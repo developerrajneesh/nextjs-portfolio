@@ -31,7 +31,11 @@ function NavbarHeader({ Ref1, Ref2, Ref3, Ref4, Ref5, Ref6, Ref7 }) {
         style={{ background: "#212529", color: "white" }}
       >
         <Container fluid>
-          <Navbar.Brand className="text-light" style={{cursor:"pointer"}} onClick={() => handleScroll(Ref1)}>
+          <Navbar.Brand
+            className="text-light"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleScroll(Ref1)}
+          >
             Rajneesh
           </Navbar.Brand>
 
@@ -105,30 +109,65 @@ function NavbarHeader({ Ref1, Ref2, Ref3, Ref4, Ref5, Ref6, Ref7 }) {
         onHide={handleClose}
         placement={"end"}
       >
-        <div className="circle-close bar-1" onClick={handleClose}><RxCross1/></div>
-        <Nav.Link className="text-light m-2 mt-5" href="#action2">
-          About
-        </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action1">
+        <div className="circle-close bar-1" onClick={handleClose}>
+          <RxCross1 />
+        </div>
+        <Nav.Link
+          className="text-light m-2 mt-5"
+          onClick={() => {
+            handleClose(), handleScroll(Ref1);
+          }}
+        >
           Home
         </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
-          Resume
+        <Nav.Link
+          className="text-light m-2 "
+          onClick={() => {
+            handleClose(), handleScroll(Ref2);
+          }}
+        >
+          About
         </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
-          Service
-        </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
-          Blogs
-        </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
+        <Nav.Link
+          className="text-light m-2"
+          onClick={() => {
+            handleClose(), handleScroll(Ref3);
+          }}
+        >
           Skills
         </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
+
+        <Nav.Link
+          className="text-light m-2"
+          onClick={() => {
+            handleClose(), handleScroll(Ref4);
+          }}
+        >
+          Service
+        </Nav.Link>
+        <Nav.Link
+          className="text-light m-2"
+          onClick={() => {
+            handleClose(), handleScroll(Ref5);
+          }}
+        >
           Projects
         </Nav.Link>
-        <Nav.Link className="text-light m-2" href="#action2">
+        <Nav.Link
+          className="text-light m-2"
+          onClick={() => {
+            handleClose(), handleScroll(Ref6);
+          }}
+        >
           Contect
+        </Nav.Link>
+        <Nav.Link
+          className="text-light m-2"
+          onClick={() => {
+            handleClose(), handleScroll(Ref7);
+          }}
+        >
+          Blogs
         </Nav.Link>
       </Offcanvas>
     </>

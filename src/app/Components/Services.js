@@ -18,7 +18,7 @@ function Services() {
       style={{ background: "#212529", color: "white" }}
     >
       <div className="container">
-        <h3 className="p-5 text-center">Services</h3>
+        <h3 className="p-5 text-center heading-for-component">Services</h3>
         <p className="text-center mx-4">
           Leading the way with advanced IT solutions, we empower businesses to
           succeed in the digital era.
