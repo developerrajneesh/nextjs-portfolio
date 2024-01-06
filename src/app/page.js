@@ -28,7 +28,7 @@ export default function Home() {
       <NavbarHeader  Ref1={Ref1} Ref2={Ref2} Ref3={Ref3} Ref4={Ref4} Ref5={Ref5} Ref6={Ref6} Ref7={Ref7}/>
       <hr className="m-0 p-0" />
       <section ref={Ref1}>
-        <Hero/>
+        <Hero  Ref5={Ref5} Ref6={Ref6}/>
       </section>
       <hr className="m-0 p-0" />
       <section ref={Ref2}>

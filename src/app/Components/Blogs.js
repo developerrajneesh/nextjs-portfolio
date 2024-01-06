@@ -1,8 +1,25 @@
 "use client";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import Slider from "react-slick";
+import { serverUrl } from "../Source";
 function Blogs() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(serverUrl + "/api/v1/admin/get-blog");
+        setBlogs(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const settings1 = {
     dots: true,
     speed: 500,
@@ -26,7 +43,6 @@ function Blogs() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-         
         },
       },
       {
@@ -38,39 +54,14 @@ function Blogs() {
       },
     ],
   };
-  const sliderData = [
-    {
-      imageUrl: "https://rajneesh.site/assets/jusnestImg-f9e4b6ae.png",
-      title: "Jobportal",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit",
-    },
-    {
-      imageUrl: "https://rajneesh.site/assets/jusnestImg-f9e4b6ae.png",
-      title: "Jobportal",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit",
-    },
-    {
-      imageUrl: "https://rajneesh.site/assets/jusnestImg-f9e4b6ae.png",
-      title: "Jobportal",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit",
-    },
-    {
-      imageUrl: "https://rajneesh.site/assets/jusnestImg-f9e4b6ae.png",
-      title: "Jobportal",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit",
-    },
-    {
-      imageUrl: "https://rajneesh.site/assets/jusnestImg-f9e4b6ae.png",
-      title: "Jobportal",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit",
-    },
-    // Add more slide data as needed
-  ];
+  function formatDate(inputDate) {
+    const dateObject = new Date(inputDate);
+    const day = String(dateObject.getDate()).padStart(2, "0");
+    const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const year = dateObject.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
   return (
     <div className="py-5 text-light" style={{ background: "rgb(64, 83, 83)" }}>
       <div className="container-xxl">
@@ -83,8 +74,8 @@ function Blogs() {
         </p>
 
         <Slider {...settings1}>
-          {sliderData.map((slide, index) => (
-            <div key={index} className="p-0 p-md-4" >
+          {blogs.map((item, index) => (
+            <div key={index} className="p-0 p-md-4">
               <AnimationOnScroll
                 initiallyVisible={false}
                 duration={0.4}
@@ -92,17 +83,22 @@ function Blogs() {
                 offset={50}
                 delay={(index + 1) * 200}
               >
-                <div className="custom-card">
+                <div className="custom-card custom-card-blog">
                   <img
-                    src={slide.imageUrl}
+                    src={`${serverUrl}/${item.img}`}
                     className="img-blog"
                     alt="img-blog"
                   />
                   <div className="d-flex justify-content-between align-items-center">
-                    <h3 className="my-3">{slide.title}</h3>{" "}
-                    <p className="my-3">20/12/2023</p>
+                    <p className="my-3 blog-title">{item.author}</p>
+                    <p className="my-3">{formatDate(item.createdAt)}</p>
                   </div>
-                  <p>{slide.description}</p>
+                  <h3 className=" blog-title">{`${item.title}`}</h3>{" "}
+                  <div
+                    className="text-blog"
+                    style={{ color: "white" }}
+                    dangerouslySetInnerHTML={{ __html: item.contant }}
+                  ></div>
                 </div>
               </AnimationOnScroll>
             </div>

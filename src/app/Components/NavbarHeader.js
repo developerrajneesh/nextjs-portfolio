@@ -36,7 +36,7 @@ function NavbarHeader({ Ref1, Ref2, Ref3, Ref4, Ref5, Ref6, Ref7 }) {
             style={{ cursor: "pointer" }}
             onClick={() => handleScroll(Ref1)}
           >
-            Rajneesh
+            Rajneesh Shukla
           </Navbar.Brand>
 
           <Navbar.Collapse id="navbarScroll4">
@@ -81,7 +81,7 @@ function NavbarHeader({ Ref1, Ref2, Ref3, Ref4, Ref5, Ref6, Ref7 }) {
                   className="text-light"
                   onClick={() => handleScroll(Ref6)}
                 >
-                  Contect
+                  Contact Us
                 </Nav.Link>
                 <Nav.Link
                   className="text-light"

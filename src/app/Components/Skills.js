@@ -2,29 +2,30 @@
 import React, { useEffect, useState } from "react";
 import AnimationOnScroll from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
+import axios from "axios";
+import { serverUrl } from "../Source";
 
 function Skills() {
-  const skillsData = [
-    { name: "HTML", backgroundColor: "#b30000" },
-    { name: "CSS", backgroundColor: "#039BE5" },
-    { name: "Sass", backgroundColor: "#F06292" },
-    { name: "JavaScript", backgroundColor: "#FFD600" },
-    { name: "React", backgroundColor: "#80DEEA" },
-    { name: "Redux", backgroundColor: "#8057C2" },
-    { name: "Node.js", backgroundColor: "#77B65C" },
-    { name: "EXPRESS JS", backgroundColor: "#d4cccb" },
-    { name: "MongoDB", backgroundColor: "#4EA94B" },
-    { name: "SQL", backgroundColor: "#f29011" },
-    { name: "Git", backgroundColor: "#E84D31" },
-    { name: "BOOTSTRAP", backgroundColor: "#563d7c" },
-    { name: "MATERIAL UI", backgroundColor: "#11cdf2" },
-    { name: "TYPE SCRIPT", backgroundColor: "#2F74C0" },
-    { name: "ANGULAR", backgroundColor: "#BD002E" },
-    { name: "VUE JS", backgroundColor: "#3FB27F" },
-    { name: "NEXT JS", backgroundColor: "#45ce05" },
-    { name: "REACT NATIVE", backgroundColor: "#61DBFB" },
-  ];
 
+
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          serverUrl+"/api/v1/admin/get-skill"
+        );
+        setSkills(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+console.log(skills);
   return (
     <>
       <div
@@ -40,7 +41,7 @@ function Skills() {
         </p>
 
         <div className="skills-wrapper p-3">
-        {skillsData.map((skill, index) => (
+        {skills.map((item, index) => (
        <AnimationOnScroll
        initiallyVisible={false}
        duration={0.4}
@@ -49,10 +50,10 @@ function Skills() {
        delay={(index+1) * 90}
      >
           <div
-            style={{ backgroundColor: skill.backgroundColor }}
+            style={{ backgroundColor: item.backgroundColor }}
             className="label-tag text-dark"
           >
-            {skill.name}
+            {item.skill}
           </div>
         </AnimationOnScroll>
       ))}

@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
 import { GrInstagram } from "react-icons/gr";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
+import { serverUrl } from "../Source";
 function Footer() {
+
+  const [links, setSLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          serverUrl+ "/api/v1/admin/get-link"
+        );
+        setSLinks(response.data[response.data.length - 1]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="  pt-1" style={{ background: "#212529", color: "white" }}>
      <div className="d-flex justify-content-center flex-wrap gap-3 mt-4">
               <a
                 target="_blank"
-                href="https://github.com/developerrajneesh/"
+                href={links.github}
               >
                 {" "}
                 <div className="circle-link-1">
@@ -20,7 +39,7 @@ function Footer() {
               </a>
               <a
                 target="_blank"
-                href="https://www.linkedin.com/in/rajneesh-shukla-638a96125/"
+                href={links.linkedin}
               >
                 {" "}
                 <div className="circle-link-1">
@@ -29,7 +48,7 @@ function Footer() {
               </a>
               <a
                 target="_blank"
-                href="https://www.instagram.com/developer.rajneesh/?igsh=MWkyZzFnN2hsNWxhYg%3D%3D"
+                href={links.instagram}
               >
                 {" "}
                 <div className="circle-link-1">
@@ -38,20 +57,20 @@ function Footer() {
               </a>
               <a
                 target="_blank"
-                href="mailto:developer.rajneeshshukla@gmail.com"
+                href={links.email}
               >
                 {" "}
                 <div className="circle-link-1">
                   <FiMail color="#8c161c" size={20} />
                 </div>
               </a>
-              <a target="_blank" href="https://wa.me/9161422065">
+              <a target="_blank" href={links.whatsapp}>
                 {" "}
                 <div className="circle-link-1">
                   <FaWhatsapp color="#1e5720" size={20} />
                 </div>
               </a>
-              <a target="_blank" href="tel:+9161422065">
+              <a target="_blank" href={links.phone}>
                 <div className="circle-link-1">
                   <FaPhone color="#38538f" size={20} />
                 </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
 import { FaLinkedin } from "react-icons/fa6";
 import { GrInstagram } from "react-icons/gr";
@@ -6,8 +6,36 @@ import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
+import { serverUrl } from "../Source";
 
-function Hero() {
+function Hero({Ref5,Ref6}) {
+
+  const [links, setSLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          serverUrl+ "/api/v1/admin/get-link"
+        );
+        setSLinks(response.data[response.data.length - 1]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  const handleScroll = async (sectionRef) => {
+    // console.log();
+    window.scrollTo({
+      top: sectionRef.current.offsetTop - 57,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <div
@@ -57,7 +85,7 @@ function Hero() {
             <div className="d-flex justify-content-between gap-2 mt-5">
               <a
                 target="_blank"
-                href="https://github.com/developerrajneesh/"
+                href={links.github}
               >
                 {" "}
                 <div className="circle-link">
@@ -66,7 +94,7 @@ function Hero() {
               </a>
               <a
                 target="_blank"
-                href="https://www.linkedin.com/in/rajneesh-shukla-638a96125/"
+                href={links.linkedin}
               >
                 {" "}
                 <div className="circle-link">
@@ -75,7 +103,7 @@ function Hero() {
               </a>
               <a
                 target="_blank"
-                href="https://www.instagram.com/developer.rajneesh/?igsh=MWkyZzFnN2hsNWxhYg%3D%3D"
+                href={links.instagram}
               >
                 {" "}
                 <div className="circle-link">
@@ -84,32 +112,32 @@ function Hero() {
               </a>
               <a
                 target="_blank"
-                href="mailto:developer.rajneeshshukla@gmail.com"
+                href={links.email}
               >
                 {" "}
                 <div className="circle-link">
                   <FiMail color="#8c161c" size={30} />
                 </div>
               </a>
-              <a target="_blank" href="https://wa.me/9161422065">
+              <a target="_blank" href={links.whatsapp}>
                 {" "}
                 <div className="circle-link">
                   <FaWhatsapp color="#1e5730" size={30} />
                 </div>
               </a>
-              <a target="_blank" href="tel:+9161422065">
+              <a target="_blank" href={links.phone}>
                 <div className="circle-link">
                   <FaPhone color="#38538f" size={30} />
                 </div>
               </a>
             </div>
             <div className="d-flex justify-content-between position-relative hire-btn-group gap-3 mt-5">
-              <button className="text-center mt-4  hireme-btn">HIRE ME</button>
-              <button className="text-center mt-4  hireme-btn">MY WORKS</button>
+              <button onClick={()=>handleScroll(Ref6)} className="text-center mt-4  hireme-btn">HIRE ME</button>
+              <button onClick={()=>handleScroll(Ref5)}  className="text-center mt-4  hireme-btn">MY WORKS</button>
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-6 d-flex d-none d-md-flex justify-content-center align-items-center ">
+        <div  className="col-12 col-md-6 d-flex d-none d-md-flex justify-content-center align-items-center ">
           {/* <img  className="img-fluid"  src={'/my_img.png'} alt="HeroImg img-fluid" /> */}
         </div>
       </div>
